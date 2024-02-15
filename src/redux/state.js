@@ -1,10 +1,13 @@
+let rerenderEntireTree = () => {}
+
 let state = {
     profilePage: {
 
         posts: [
             { id: 1, message: 'Hi, how are you', likeCount: 25 },
             { id: 2, message: 'It is my first post', likeCount: 35 }
-        ]
+        ],
+        newPostText: 'it-incubator'
 
     },
 
@@ -31,12 +34,34 @@ let state = {
 
         friends: [
             { id: 1, src: "https://img.freepik.com/premium-vector/vector-illustration-winter-girl-concept-brunette-girl-winter_469123-531.jpg", alt: 'Nadia' },
-            { id: 2, src: 'https://img.freepik.com/premium-vector/vector-illustration-winter-boy-concept-hello-winter-avataka-social-networks_469123-525.jpg?w=2000', alt: 'Roma'},
-            { id: 3, src: 'https://img.freepik.com/premium-vector/vector-illustration-winter-boy-concept-hello-winter-avataka-social-networks_469123-519.jpg', alt: 'Maksim'}
+            { id: 2, src: 'https://img.freepik.com/premium-vector/vector-illustration-winter-boy-concept-hello-winter-avataka-social-networks_469123-525.jpg?w=2000', alt: 'Roma' },
+            { id: 3, src: 'https://img.freepik.com/premium-vector/vector-illustration-winter-boy-concept-hello-winter-avataka-social-networks_469123-519.jpg', alt: 'Maksim' }
         ]
-        
-    },
 
+    },
+}
+
+window.state= state;
+
+export const addPost = () => {
+    let newPost = {
+        id: 5,
+        message: state.profilePage.newPostText,
+        likeCount: 0
+    }
+
+    state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText='';
+    rerenderEntireTree(state);
+};
+
+export const updateNewPostText = (newText) => {
+    state.profilePage.newPostText= newText;
+    rerenderEntireTree(state);
+};
+
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer;
 }
 
 export default state;
