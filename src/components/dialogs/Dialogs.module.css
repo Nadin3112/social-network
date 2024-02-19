@@ -17,6 +17,13 @@
 
 .messageList{
     padding: 20px;
+    margin-bottom: 10px;
+}
+
+.form .btn {
+    display: block;
+    padding: 5px;
+    margin-top: 10px;
 }
 
 .messageItem {
