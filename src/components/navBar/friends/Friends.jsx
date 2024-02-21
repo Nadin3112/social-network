@@ -4,8 +4,8 @@ import FriendItem from './friend/FriendItem';
 
 const Friends = (props) => {
 
-    let friendsElements = props.friends.map(f => <FriendItem id={f.id} src={f.src} alt={f.alt}/>)
-    
+    let friendsElements = props.friends.map(f => <FriendItem id={f.id} src={f.src} alt={f.alt} />)
+
     return (
         <div className={S.friends}>
             <h3>My friends</h3>
