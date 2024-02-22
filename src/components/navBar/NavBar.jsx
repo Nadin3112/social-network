@@ -1,8 +1,7 @@
 import React from 'react';
 import S from './NavBar.module.css';
 import { NavLink } from 'react-router-dom';
-import Friends from './friends/Friends';
-import StoreContext from '../../StoreContext';
+import FriendsContainer from './friends/FriendsContainer';
 
 const NavBar = () => {
 
@@ -27,12 +26,7 @@ const NavBar = () => {
                     </li>
                 </ul>
             </nav>
-            <StoreContext.Consumer>
-                { (store) => {
-                    let state = store.getState();
-                    return <Friends friends={state.sideBar.friends} /> }
-                }
-            </StoreContext.Consumer>;
+            <FriendsContainer />
         </div>
     );
 };
