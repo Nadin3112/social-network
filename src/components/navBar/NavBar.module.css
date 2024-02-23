@@ -2,8 +2,8 @@
 
 .navBar {
     grid-area: n;
-    background-color: rgb(133, 133, 133);
-    padding: 20px;
+    background-color: white;
+    padding: 20px 5px;
 }
 
 .list {
@@ -13,10 +13,10 @@
 }
 
 .item a {
-    color: #ffffff;
+    color: black;
     text-decoration: none;
 }
 
 .item a.active {
-    color: black;
+    color: rgb(24, 192, 221);
 }
