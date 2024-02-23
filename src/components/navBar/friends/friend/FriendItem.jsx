@@ -5,7 +5,7 @@ import S from './FriendItem.module.css';
 const FriendItem = (props) => {
     return (
                 <li className={S.friendsItem}>
-                    <NavLink to={"/users/" + props.id}>
+                    <NavLink to={"/friends/" + props.id}>
                         <img src={props.src} alt={props.alt}></img>
                     </NavLink>
                     </li>
