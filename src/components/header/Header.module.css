@@ -1,8 +1,17 @@
 .header {
+    padding: 0 30px;
     grid-area: h;
     background-color: rgb(24, 192, 221);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header img {
-    width: 20px;
+    width: 100px;
+}
+
+.loginBlock a {
+    color: white;
+    text-decoration: none;
 }
