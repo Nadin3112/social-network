@@ -34,6 +34,13 @@ let store = {
                 { id: 1, src: "https://img.freepik.com/premium-vector/vector-illustration-winter-girl-concept-brunette-girl-winter_469123-531.jpg", alt: 'Nadia' },
                 { id: 2, src: 'https://img.freepik.com/premium-vector/vector-illustration-winter-boy-concept-hello-winter-avataka-social-networks_469123-525.jpg?w=2000', alt: 'Roma' },
                 { id: 3, src: 'https://img.freepik.com/premium-vector/vector-illustration-winter-boy-concept-hello-winter-avataka-social-networks_469123-519.jpg', alt: 'Maksim' }
+            ],
+
+            users: [
+                { id: 1, src: "https://img.freepik.com/premium-vector/vector-illustration-winter-girl-concept-brunette-girl-winter_469123-531.jpg", alt: 'Nadia', btn: 'Follow', city: 'Brest, Belarus', lead: 'I am happy' },
+                { id: 2, src: 'https://img.freepik.com/premium-vector/vector-illustration-winter-boy-concept-hello-winter-avataka-social-networks_469123-525.jpg?w=2000', alt: 'Roma', btn: 'Follow', city: 'Brest, Belarus', lead: 'I like soccer'},
+                { id: 3, src: 'https://img.freepik.com/premium-vector/vector-illustration-winter-boy-concept-hello-winter-avataka-social-networks_469123-519.jpg', alt: 'Maksim', btn: 'Unfollow', city: 'Minsk, Belarus', lead: 'I like hockey' },
+                { id: 4, src: 'https://img.freepik.com/premium-vector/female-user-profile-avatar-is-a-woman-a-character-for-a-screen-saver-with-emotions_505620-617.jpg', alt: 'Sofia', btn: 'Unfollow', city: 'Minsk, Belarus', lead: 'I am so pretty' }
             ]
         },
     },
@@ -52,7 +59,7 @@ let store = {
     dispatch(action) {
         this._state.profilePage = profileReducer(this._state.profilePage, action); 
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
-        this._state.siteBar = sidebarReducer(this._state.siteBar, action);
+        this._state.sideBar = sidebarReducer(this._state.sideBar, action);
 
         this._callSubscriber(this._state);
 
