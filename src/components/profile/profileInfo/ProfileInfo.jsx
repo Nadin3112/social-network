@@ -1,17 +1,24 @@
 import React from 'react';
 import S from './ProfileInfo.module.css';
 import Preloader from '../../common/preloader/Preloader';
+import ProfileStatus from './ProfileStatus';
+import { NavLink } from 'react-router-dom';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
         return <Preloader />
     }
     return (
-        <div className={S.profileImg}>
+        <div className={S.profileInfo}>
             <img src={props.profile.photos.large} alt={props.profile.fullName}></img>
-            <p>{props.profile.fullName}</p>
-            <p>{props.profile.aboutMe}</p>
-            <p>{props.profile.contacts.github}</p>
+            <div className={S.profileWrapper}>
+                <div className={S.info}>
+                    <h2>{props.profile.fullName}</h2>
+                    <NavLink to={props.profile.contacts.github}>{props.profile.contacts.github}</NavLink>
+                </div>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                {/* <p>{props.profile.aboutMe}</p>  */}
+            </div>
         </div>
 
     );
