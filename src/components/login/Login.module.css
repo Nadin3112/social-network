@@ -1,0 +1,33 @@
+.login {
+    padding: 40px;
+}
+
+.login h1 {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.formLogin {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px;
+    width: 100%;
+}
+
+.formLogin input {
+    padding: 12px 15px;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.6px;
+    text-transform: capitalize;
+}
+
+.formLogin button {
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.6px;
+    text-transform: capitalize;
+    width: 150px;
+}
