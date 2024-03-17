@@ -1,8 +1,9 @@
 import React from 'react';
 import S from './ProfileInfo.module.css';
 import Preloader from '../../common/preloader/Preloader';
-import ProfileStatus from './ProfileStatus';
+//import ProfileStatus from './ProfileStatus';
 import { NavLink } from 'react-router-dom';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -16,7 +17,7 @@ const ProfileInfo = (props) => {
                     <h2>{props.profile.fullName}</h2>
                     <NavLink to={props.profile.contacts.github}>{props.profile.contacts.github}</NavLink>
                 </div>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
                 {/* <p>{props.profile.aboutMe}</p>  */}
             </div>
         </div>
