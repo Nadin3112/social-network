@@ -29,3 +29,9 @@
     letter-spacing: 0.6px;
     width: 150px;
 }
+
+.formSummaryError {
+    border: 1px solid red;
+    color: red;
+    padding: 5px;
+}
