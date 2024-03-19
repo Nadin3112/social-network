@@ -5,20 +5,19 @@ import Preloader from '../../common/preloader/Preloader';
 import { NavLink } from 'react-router-dom';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
+const ProfileInfo = ({profile, status, updateStatus} ) => {
+    if (!profile) {
         return <Preloader />
     }
     return (
         <div className={S.profileInfo}>
-            <img src={props.profile.photos.large} alt={props.profile.fullName}></img>
+            <img src={profile.photos.large} alt={profile.fullName}></img>
             <div className={S.profileWrapper}>
                 <div className={S.info}>
-                    <h2>{props.profile.fullName}</h2>
-                    <NavLink to={props.profile.contacts.github}>{props.profile.contacts.github}</NavLink>
+                    <h2>{profile.fullName}</h2>
+                    <NavLink to={profile.contacts.github}>{profile.contacts.github}</NavLink>
                 </div>
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
-                {/* <p>{props.profile.aboutMe}</p>  */}
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
         </div>
 

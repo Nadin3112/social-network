@@ -11,7 +11,7 @@ import ProfileContainer from './components/profile/ProfileContainer';
 import HeaderContainer from './components/header/HeaderContainer';
 import Login from './components/login/Login';
 import { connect } from 'react-redux';
-import {initializeApp} from './redux/appReducer';
+import { initializeApp } from './redux/appReducer';
 import { compose } from 'redux';
 import withRouter from './components/profile/withRouter';
 import Preloader from './components/common/preloader/Preloader';
@@ -23,28 +23,28 @@ class App extends React.Component {
   }
 
   render() {
-    if(!this.props.initialized) {
-      return <Preloader/>
-  }
+    if (!this.props.initialized) {
+      return <Preloader />
+    }
 
     return (
-      <div className='app-wrapper'>
-        <HeaderContainer />
-        <NavBar />
-        <div className='app-wrapper-content'>
-          <Routes>
-            <Route>
-              <Route path='/profile/:userId?' element={<ProfileContainer />} />
-            </Route>
-            <Route path='/dialogs/*' element={<DialogsContainer />} />
-            <Route path='/news' element={<News />} />
-            <Route path='/music' element={<Music />} />
-            <Route path='/users' element={<UsersContainer />} />
-            <Route path='/settings' element={<Settings />} />
-            <Route path='/login' element={<Login />} />
-          </Routes>
-        </div>
-      </div>
+          <div className='app-wrapper'>
+            <HeaderContainer />
+            <NavBar />
+            <div className='app-wrapper-content'>
+              <Routes>
+                <Route>
+                  <Route path='/profile/:userId?' element={<ProfileContainer />} />
+                </Route>
+                <Route path='/dialogs/*' element={<DialogsContainer />} />
+                <Route path='/news' element={<News />} />
+                <Route path='/music' element={<Music />} />
+                <Route path='/users' element={<UsersContainer />} />
+                <Route path='/settings' element={<Settings />} />
+                <Route path='/login' element={<Login />} />
+              </Routes>
+            </div>
+          </div>
     );
   }
 }
