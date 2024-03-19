@@ -1,7 +1,7 @@
 import { stopSubmit } from 'redux-form';
 import { authAPI } from '../api/Api';
 
-const SET_USERS_DATA = 'samurai-network/auth/SET_USERS_DATA'
+const SET_USERS_DATA = 'social-network//auth/SET_USERS_DATA'
 
 let initialState = {
     userId: null,

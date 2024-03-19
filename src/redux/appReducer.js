@@ -1,5 +1,5 @@
 import { getAuthUserData } from "./authReducer";
-const INITIALIZED_SUCCESS = 'samurai-network/app/INITIALIZED_SUCCESS';
+const INITIALIZED_SUCCESS = 'social-network/app/INITIALIZED_SUCCESS';
 
 let initialState = {
     initialized: false,
