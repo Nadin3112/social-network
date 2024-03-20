@@ -15,7 +15,9 @@ import { initializeApp } from './redux/appReducer';
 import { compose } from 'redux';
 import withRouter from './components/profile/withRouter';
 import Preloader from './components/common/preloader/Preloader';
-
+import { BrowserRouter } from 'react-router-dom';
+import store from './redux/reduxStore';
+import { Provider } from 'react-redux';
 
 class App extends React.Component {
   componentDidMount() {
@@ -53,6 +55,18 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized
 })
 
-export default compose(
+const AppContainer =  compose(
   withRouter,
   connect(mapStateToProps, { initializeApp }))(App);
+
+  const SocialNetworkApp = (props) => {
+    return (
+      <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer />
+            </Provider>
+        </BrowserRouter>
+    )
+  };
+
+  export default SocialNetworkApp; 
