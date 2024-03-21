@@ -5,7 +5,7 @@ import Preloader from '../../common/preloader/Preloader';
 import { NavLink } from 'react-router-dom';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
-const ProfileInfo = ({profile, status, updateStatus} ) => {
+const ProfileInfo = ({ profile, status, updateStatus }) => {
     if (!profile) {
         return <Preloader />
     }
@@ -17,7 +17,7 @@ const ProfileInfo = ({profile, status, updateStatus} ) => {
                     <h2>{profile.fullName}</h2>
                     <NavLink to={profile.contacts.github}>{profile.contacts.github}</NavLink>
                 </div>
-                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
             </div>
         </div>
 
