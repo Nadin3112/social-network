@@ -13,7 +13,6 @@ import { initializeApp } from './redux/appReducer';
 import { compose } from 'redux';
 import withRouter from './components/profile/withRouter';
 import Preloader from './components/common/preloader/Preloader';
-import { HashRouter } from 'react-router-dom';
 import store from './redux/reduxStore';
 import { Provider } from 'react-redux';
 
