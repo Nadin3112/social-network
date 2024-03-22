@@ -64,7 +64,7 @@ const AppContainer = compose(
 const SocialNetworkApp = (props) => {
   return (
     <BrowserRouter>
-      <Provider store={store}>
+      <Provider store={store} basename={process.env.PUBLIC_URL}>
         <AppContainer />
       </Provider>
     </BrowserRouter>
