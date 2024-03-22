@@ -4,7 +4,7 @@ import NavBar from './components/navBar/NavBar';
 import News from './components/news/News';
 import Music from './components/music/Music';
 import Settings from './components/settings/Settings';
-import { Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import UsersContainer from './components/users/UsersContainer';
 import HeaderContainer from './components/header/HeaderContainer';
 import Login from './components/login/Login';
@@ -13,7 +13,7 @@ import { initializeApp } from './redux/appReducer';
 import { compose } from 'redux';
 import withRouter from './components/profile/withRouter';
 import Preloader from './components/common/preloader/Preloader';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import store from './redux/reduxStore';
 import { Provider } from 'react-redux';
 
@@ -63,11 +63,11 @@ const AppContainer = compose(
 
 const SocialNetworkApp = (props) => {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter basename={process.env.PUBLIC_URL}>
       <Provider store={store} >
         <AppContainer />
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   )
 };
 
