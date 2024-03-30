@@ -11,13 +11,14 @@ import Login from './components/login/Login';
 import { connect } from 'react-redux';
 import { initializeApp } from './redux/appReducer';
 import { compose } from 'redux';
-import withRouter from './components/profile/withRouter';
 import Preloader from './components/common/preloader/Preloader';
 import store from './redux/reduxStore';
 import { Provider } from 'react-redux';
+import withRouter from './components/profile/withRouter';
 
 const ProfileContainer = React.lazy(() => import('./components/profile/ProfileContainer'));
 const DialogsContainer = React.lazy(() => import('./components/dialogs/DialogsContainer'));
+
 class App extends React.Component {
   componentDidMount() {
     this.props.initializeApp();
@@ -62,7 +63,7 @@ const AppContainer = compose(
 
 const SocialNetworkApp = (props) => {
   return (
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter>
       <Provider store={store} >
         <AppContainer />
       </Provider>
