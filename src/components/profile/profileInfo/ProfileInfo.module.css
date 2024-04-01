@@ -1,12 +1,15 @@
 .profileInfo {
-    display: flex;
+    /*display: flex;
     align-items: flex-end;
-    gap: 40px;
+    gap: 40px;*/
     padding-bottom: 30px;
 }
 
+.photoWrapper {
+    margin-bottom: 20px;
+}
+
 .profileInfo Img {
-    display: block;
     width: auto;
     height: 150px;
 }
@@ -32,4 +35,14 @@
 
 .mainPhoto {
     width: 400px;
+}
+
+.contacts {
+    padding-left: 10px;
+}
+
+.formSummaryError {
+    border: 1px solid red;
+    color: red;
+    padding: 5px;
 }

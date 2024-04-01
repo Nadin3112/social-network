@@ -7,18 +7,13 @@ import { Textarea } from '../../common/formsControls/FormControls';
 
 const maxLengthCreator10 = maxLengthCreator(10);
 
-
 const MyPosts = React.memo(props => {
-
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     return nextProps !== this.props || nextState !== this.state;
-    // }
 
     const onAddPost = (values) => {
         props.addPost(values.newPostElement)
     };
 
-    let postsElements = props.posts.map(p => <Post message={p.message} likeCount={p.likeCount} key={p.id} id={p.id} />);
+    let postsElements = props.posts.map(p => <Post key={p.id} message={p.message} likeCount={p.likeCount} id={p.id} />);
     return (
         <div className={S.myPosts}>
             <h3>My posts</h3>
