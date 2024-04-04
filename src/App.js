@@ -4,7 +4,7 @@ import NavBar from './components/navBar/NavBar';
 import News from './components/news/News';
 import Music from './components/music/Music';
 import Settings from './components/settings/Settings';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import UsersContainer from './components/users/UsersContainer';
 import HeaderContainer from './components/header/HeaderContainer';
 import Login from './components/login/Login';
@@ -33,9 +33,10 @@ class App extends React.Component {
       <div className='app-wrapper'>
         <HeaderContainer />
         <NavBar />
-        <Suspense fallback={<div>Загрузка...</div>}>
+        <Suspense fallback={<div>Loading...</div>}>
           <div className='app-wrapper-content'>
             <Routes>
+              <Route path='/' element={<Navigate to={'/profile'} />} />
               <Route>
                 <Route path='/profile/:userId?' element={<ProfileContainer />} />
               </Route>
@@ -45,6 +46,7 @@ class App extends React.Component {
               <Route path='/users' element={<UsersContainer />} />
               <Route path='/settings' element={<Settings />} />
               <Route path='/login' element={<Login />} />
+              <Route path='*' element={<div>404 NOT FOUND</div>} />
             </Routes>
           </div>
         </Suspense>
@@ -63,11 +65,11 @@ const AppContainer = compose(
 
 const SocialNetworkApp = (props) => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Provider store={store} >
         <AppContainer />
       </Provider>
-    </HashRouter>
+    </BrowserRouter>
   )
 };
 
