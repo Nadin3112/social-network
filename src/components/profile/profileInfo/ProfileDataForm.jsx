@@ -1,39 +1,52 @@
 import React from 'react';
 import S from './ProfileInfo.module.css';
-import { Input, Textarea, createField } from '../../common/formsControls/FormControls';
-import { reduxForm } from 'redux-form';
+import { Formik, Form, Field } from 'formik';
 
-const ProfileDataForm = ({handleSubmit, profile, error}) => {
+
+const ProfileDataForm = ({  onSubmit, profile }) => {
 
     return (
-        <form onSubmit={handleSubmit}>
-            <button>save</button>
-            {error && <div className={S.formSummaryError}>{error}</div>}
-            <div className={S.info}>
-                <div>
-                    <b>Full name:</b>  {createField("Full name", "fullName", [], Input)}
-                </div>
-            </div>
-            <div>
-                <b>Looking for a job: </b> {createField("", "lookingForAJob", [], Input, {type: "checkbox"})}
-            </div>
-            <div>
-                <b>My skills: </b> {createField("My skills", "lookingForAJobDescription", [], Textarea)}
-            </div>
-            <div>
-                <b>About me: </b> {createField("About me", "aboutMe", [], Textarea)}
-            </div>
-            <div>
-                <b>Contacts:</b> {Object.keys(profile.contacts).map(key => {
-                    return <div key={key} className={S.contacts}>
-                        <b>{key}: {createField(key, "contacts." + key, [], Input)}</b>
-                    </div>
-                })} 
-            </div>
-        </form>
+        <Formik
+                    initialValues={{
+                        fullName: profile.fullName,
+                        lookingForAJob: profile.lookingForAJob,
+                        lookingForAJobDescription: profile.lookingForAJobDescription,
+                        aboutMe: profile.aboutMe,
+                        contacts: profile.contacts
+                    }}
+                    onSubmit={(values) => {
+                        onSubmit(values)
+                    }}>
+                    {() => (
+                        <Form className={S.info}>
+                            <label className={S.label}>Full name
+                                <Field type="text" name="fullName" />
+                            </label>
+                            <label className={S.label}>Looking for a job
+                                <Field type="checkbox" name="lookingForAJob" />
+                            </label>
+                            <label className={S.label}>My skills
+                                <Field as="textarea" name="lookingForAJobDescription" />
+                            </label>
+                            <label className={S.label}>About me
+                                <Field as="textarea" name="aboutMe" />
+                            </label>
+                            <div>
+                                <label className={S.label}>Contacts:</label>
+                                {Object.keys(profile.contacts).map(key => {
+                                    return <div key={key} className={S.contacts}>
+                                        <label>{key}: <Field type="text" name={key} />
+                                        </label>
+                                    </div>
+                                })}
+                            </div>
+                            <button className={S.btn} type="submit">
+                                Save
+                            </button>
+                        </Form>
+                    )}
+                </Formik>
     );
 };
 
-const ProfileDatatReduxForm = reduxForm({ form: "editProfile" })(ProfileDataForm)
-
-export default ProfileDatatReduxForm;
+export default ProfileDataForm;

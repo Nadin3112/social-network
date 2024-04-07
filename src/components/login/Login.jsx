@@ -1,52 +1,53 @@
 import React from 'react';
 import S from './Login.module.css'
-import { reduxForm } from 'redux-form';
-import { Input, createField } from '../common/formsControls/FormControls';
-import { required } from '../../utils/validators/validators';
 import { connect } from 'react-redux';
 import { login } from '../../redux/authReducer';
 import { Navigate } from 'react-router-dom';
-
-const LoginForm = ({handleSubmit, error, captchaUrl}) => {
-    return (
-        <form className={S.formLogin} onSubmit={handleSubmit}>
-            {createField("Email", "email", [required], Input)}
-            {createField("Password", "password", [required], Input, {type: "password"})}
-            <label>
-                {createField(null, "rememberMe", [], Input, {type: "checkbox"})}
-                Remember me
-            </label>
-
-            {captchaUrl && <img src={captchaUrl} alt=''/> }
-
-            {captchaUrl && createField("Symbols from image", "captcha", [required], Input)}
-
-            {error && <div className={S.formSummaryError}>{error}</div>}
-            <button type={"submit"}>Login</button>
-        </form>
-    );
-};
-
-const LoginReduxForm = reduxForm({
-    form: 'login'
-})(LoginForm)
-
+import { Formik, Form, Field } from 'formik';
+import { validationSchema } from '../../utils/validators/validators';
 
 const Login = (props) => {
 
     if (props.isAuth) {
         return <Navigate to={"/profile"} />
     }
-    const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
+
+
+    const onSubmit = (formData, { setSubmitting, setStatus }) => {
+        props.login(formData.email, formData.password, formData.rememberMe, setStatus, formData.captcha);
+        setSubmitting(false);
     }
+
     return (
         <div className={S.login}>
             <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
+            <Formik
+                initialValues={{ email: '', password: '', rememberMe: false, captcha: '' }}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}>
+                {({ errors, touched, status }) => (
+                    <Form className={S.formLogin}>
+                        <div className={S.formSummaryError}>
+                            {status}
+                        </div>
+                        <Field type="email" name="email" />
+                        {errors.email && touched.email ? (<div className={S.formSummaryError}>{errors.email}</div>) : null}
+                        <Field type="password" name="password" />
+                        {errors.password && touched.password ? (<div className={S.formSummaryError}>{errors.password}</div>) : null}
+                        <label>
+                            <Field type="checkbox" name="checked" value="rememberMe" />
+                            remember Me
+                        </label>
+                        {props.captchaUrl && <img src={props.captchaUrl} alt={'captcha'} />}
+                        {props.captchaUrl && <Field name={'captcha'} />}
+                        <button type="submit" >Submit</button>
+                    </Form>
+                )}
+            </Formik>
         </div>
     );
 };
+
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
     captchaUrl: state.auth.captchaUrl

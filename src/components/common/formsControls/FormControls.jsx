@@ -1,6 +1,6 @@
 import React from 'react';
 import S from './FormControls.module.css';
-import { Field } from 'redux-form';
+import { Field } from 'formik';
 
 const FormControl = ({ input, meta: {touched, error }, children, ...props }) => {
     const hasError = touched && error;

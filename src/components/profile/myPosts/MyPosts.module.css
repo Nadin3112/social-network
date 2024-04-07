@@ -10,3 +10,8 @@
     display: block;
     margin-top: 10px;
 }
+
+.formSummaryError {
+    color: red;
+    padding: 5px;
+}

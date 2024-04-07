@@ -1,7 +1,4 @@
 .profileInfo {
-    /*display: flex;
-    align-items: flex-end;
-    gap: 40px;*/
     padding-bottom: 30px;
 }
 
@@ -21,7 +18,20 @@
 
 .info {
     display: flex;
-    gap: 30px;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info  .label {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info  .btn {
+    width: 100px;
+    padding: 5px;
 }
 
 .info h2 {
