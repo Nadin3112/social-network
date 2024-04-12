@@ -2,11 +2,21 @@ import React from 'react';
 import S from './Dialogs.module.css';
 import DialogItem from './dialogItem/DialogItem';
 import MessageItem from './message/MessageItem';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
+import { InitialStateType } from '../../redux/dialogsReducer';
 
-const Dialogs = (props) => {
+type PropsType = {
+    dialogsPage: InitialStateType
+    sendMessage: (messageText: string) => void
+}
 
-    const addNewMessage = (values, {resetForm}) => {
+interface MyFormValues {
+    newMessageElement: string 
+}
+
+const Dialogs: React.FC<PropsType> = (props) => {
+
+    const addNewMessage = (values: MyFormValues, {resetForm}: FormikHelpers<MyFormValues>) => {
         props.sendMessage(values.newMessageElement);
         resetForm();
     }
@@ -34,8 +44,6 @@ const Dialogs = (props) => {
                         </Form>
                     )}
                 </Formik>
-
-
             </div>
         </div>
     );

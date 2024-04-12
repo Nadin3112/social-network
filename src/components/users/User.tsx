@@ -2,13 +2,21 @@ import React from 'react';
 import S from './Users.module.css';
 import userPhoto from '../../assets/images/user1.avif';
 import { NavLink } from 'react-router-dom';
+import { UsersType } from '../../types/types';
 
-const User = ({ user, followingInProgress, unfollow, follow }) => {
+type PropsType = {
+    user: UsersType
+    followingInProgress: Array<number>
+    unfollow: (userId: number) => void
+    follow: (userId: number) => void
+}
+
+const User:React.FC<PropsType> = ({ user, followingInProgress, unfollow, follow }) => {
     return (
         <li className={S.item}>
             <div className={S.wrapper}>
                 <NavLink to={'/profile/' + user.id}>
-                    <img className={S.avatar} src={user.photos.small != null ? user.photos.small : userPhoto} alt={user.alt} />
+                    <img className={S.avatar} src={user.photos.small != null ? user.photos.small : userPhoto} alt='' />
                 </NavLink>
                 {user.followed ?
                     <button disabled={followingInProgress.some(id => id === user.id)} className={S.btn}

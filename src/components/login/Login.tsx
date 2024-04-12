@@ -3,18 +3,35 @@ import S from './Login.module.css'
 import { connect } from 'react-redux';
 import { login } from '../../redux/authReducer';
 import { Navigate } from 'react-router-dom';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, FormikHelpers } from 'formik';
 import { validationSchema } from '../../utils/validators/validators';
+import { AppStateType } from '../../redux/reduxStore';
 
-const Login = (props) => {
+type MapStatePropsType = {
+    isAuth: boolean,
+    captchaUrl: string | null
+}
 
+type MapDispatchPropsType = {
+    login: (email: string, password: string, rememberMe: boolean, setStatus: any, captcha: string) => void
+}
+
+interface MyFormValues {
+    email: string
+    password: string
+    rememberMe: false, 
+    captcha: string 
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType
+
+const Login:React.FC<PropsType> = (props) => {
     if (props.isAuth) {
         return <Navigate to={"/profile"} />
     }
 
-
-    const onSubmit = (formData, { setSubmitting, setStatus }) => {
-        props.login(formData.email, formData.password, formData.rememberMe, setStatus, formData.captcha);
+    const onSubmit = (values: MyFormValues, { setSubmitting, setStatus}: FormikHelpers<MyFormValues> ) => {
+        props.login(values.email, values.password, values.rememberMe, setStatus, values.captcha);
         setSubmitting(false);
     }
 
@@ -22,7 +39,7 @@ const Login = (props) => {
         <div className={S.login}>
             <h1>Login</h1>
             <Formik
-                initialValues={{ email: '', password: '', rememberMe: false, captcha: '' }}
+                initialValues = {{ email: '', password: '', rememberMe: false, captcha: '' }}
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}>
                 {({ errors, touched, status }) => (
@@ -48,7 +65,7 @@ const Login = (props) => {
     );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     isAuth: state.auth.isAuth,
     captchaUrl: state.auth.captchaUrl
 });

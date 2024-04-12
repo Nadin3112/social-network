@@ -1,12 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { follow,  requestUsers, unfollow } from '../../redux/usersReducer';
-import Users from './Users';
-import Preloader from '../common/preloader/Preloader';
-import { compose } from 'redux';
-import { getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress } from '../../redux/usersSelectors';
-import { UsersType } from '../../types/types';
-import { AppStateType } from '../../redux/reduxStore';
+import React from 'react'
+import { connect } from 'react-redux'
+import { follow,  requestUsers, unfollow } from '../../redux/usersReducer'
+import Users from './Users'
+import Preloader from '../common/preloader/Preloader'
+import { compose } from 'redux'
+import { getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress } from '../../redux/usersSelectors'
+import { UsersType } from '../../types/types'
+import { AppStateType } from '../../redux/reduxStore'
 
 type MapStatePropsType = {
     currentPage: number
@@ -31,13 +31,13 @@ type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
 
 class UsersContainer extends React.Component<PropsType> {
     componentDidMount() {
-        const {currentPage, pageSize} = this.props;
-        this.props.getUsers(currentPage, pageSize);
+        const {currentPage, pageSize} = this.props
+        this.props.getUsers(currentPage, pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
-        const {pageSize} = this.props;
-        this.props.getUsers(pageNumber, pageSize);
+        const {pageSize} = this.props
+        this.props.getUsers(pageNumber, pageSize)
     }
 
     render() {
@@ -69,8 +69,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 }
 
 export default compose<PropsType> (
-    connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps,
-        {
-            follow, unfollow, getUsers: requestUsers
-        }))
-    (UsersContainer);
+    connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(
+        mapStateToProps,
+        {follow, unfollow, getUsers: requestUsers}))
+    (UsersContainer)
