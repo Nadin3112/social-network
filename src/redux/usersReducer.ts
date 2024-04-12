@@ -1,5 +1,5 @@
 import { usersAPI } from '../api/UserApi'
-import { updateObjectInArray } from '../utils/objectHelpers.js/ObjectHelpers'
+import { updateObjectInArray } from '../utils/objectHelpers/ObjectHelpers'
 import { UsersType } from '../types/types'
 import {  BaseThunkType, InferActionsTypes } from './reduxStore'
 import { Dispatch } from 'redux'
