@@ -2,7 +2,13 @@ import React from 'react';
 import S from './Post.module.css';
 import myPhoto from '../../../../assets/images/my-photo.avif';
 
-const Post = (props) => {
+type PropsType = {
+    id: number
+    message: string
+    likeCount: number
+}
+
+const Post:React.FC<PropsType> = (props) => {
     return (
         <div className={S.item}>
             <img src={myPhoto} alt="" />

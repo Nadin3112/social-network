@@ -1,11 +1,21 @@
 import React from 'react';
 import S from './MyPosts.module.css';
 import Post from './post/Post';
-import { Formik, Field,  Form } from 'formik';
+import { Formik, Field,  Form, FormikHelpers } from 'formik';
+import { PostType } from '../../../types/types';
 
-const MyPosts = React.memo(props => {
+interface MyFormValues {
+    newPostElement: string 
+}
 
-    const onAddPost = (values, {resetForm}) => {
+type PropsType = {
+    posts: Array<PostType>
+    addPost: (newPostElement: string) => void
+}
+
+
+const MyPosts = React.memo<PropsType>(props => {
+    const onAddPost = (values: MyFormValues, {resetForm}: FormikHelpers<MyFormValues>) => {
         props.addPost(values.newPostElement);
         resetForm();
     };
