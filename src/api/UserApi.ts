@@ -1,4 +1,4 @@
-import { GetItemsType, instance, ResponseType } from "./Api"
+import { GetItemsType, instance } from "./Api"
 
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {

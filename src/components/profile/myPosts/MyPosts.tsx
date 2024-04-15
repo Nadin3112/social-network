@@ -8,13 +8,17 @@ interface MyFormValues {
     newPostElement: string 
 }
 
-type PropsType = {
+export type MapPropsType = {
     posts: Array<PostType>
+    
+}
+
+export type DispatchPropsType = {
     addPost: (newPostElement: string) => void
 }
 
 
-const MyPosts = React.memo<PropsType>(props => {
+const MyPosts = React.memo<MapPropsType & DispatchPropsType>(props => {
     const onAddPost = (values: MyFormValues, {resetForm}: FormikHelpers<MyFormValues>) => {
         props.addPost(values.newPostElement);
         resetForm();
