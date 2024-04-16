@@ -1,20 +1,11 @@
 import React from 'react';
 import S from './Login.module.css'
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/authReducer';
 import { Navigate } from 'react-router-dom';
 import { Formik, Form, Field, FormikHelpers } from 'formik';
 import { validationSchema } from '../../utils/validators/validators';
-import { AppStateType } from '../../redux/reduxStore';
-
-type MapStatePropsType = {
-    isAuth: boolean,
-    captchaUrl: string | null
-}
-
-type MapDispatchPropsType = {
-    login: (email: string, password: string, rememberMe: boolean, setStatus: any, captcha: string) => void
-}
+import { AppDispatch, AppStateType } from '../../redux/reduxStore';
 
 interface MyFormValues {
     email: string
@@ -23,15 +14,19 @@ interface MyFormValues {
     captcha: string 
 }
 
-type PropsType = MapStatePropsType & MapDispatchPropsType
+export const LoginPage:React.FC = (props) => {
 
-const Login:React.FC<PropsType> = (props) => {
-    if (props.isAuth) {
+    const captchaUrl = useSelector((state: AppStateType) => state.auth.captchaUrl)
+    const isAuth =  useSelector((state: AppStateType) => state.auth.isAuth)
+
+    const dispatch: AppDispatch = useDispatch()
+
+
+    if (isAuth) {
         return <Navigate to={"/profile"} />
     }
-
     const onSubmit = (values: MyFormValues, { setSubmitting, setStatus}: FormikHelpers<MyFormValues> ) => {
-        props.login(values.email, values.password, values.rememberMe, setStatus, values.captcha);
+        dispatch(login(values.email, values.password, values.rememberMe, setStatus, values.captcha));
         setSubmitting(false);
     }
 
@@ -55,8 +50,8 @@ const Login:React.FC<PropsType> = (props) => {
                             <Field type="checkbox" name="checked" value="rememberMe" />
                             remember Me
                         </label>
-                        {props.captchaUrl && <img src={props.captchaUrl} alt={'captcha'} />}
-                        {props.captchaUrl && <Field name={'captcha'} />}
+                        {captchaUrl && <img src={captchaUrl} alt={'captcha'} />}
+                        {captchaUrl && <Field name={'captcha'} />}
                         <button type="submit" >Submit</button>
                     </Form>
                 )}
@@ -64,10 +59,3 @@ const Login:React.FC<PropsType> = (props) => {
         </div>
     );
 };
-
-const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
-    isAuth: state.auth.isAuth,
-    captchaUrl: state.auth.captchaUrl
-});
-
-export default connect(mapStateToProps, { login })(Login);

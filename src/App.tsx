@@ -5,9 +5,9 @@ import News from './components/news/News'
 import Music from './components/music/Music'
 import Settings from './components/settings/Settings'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import UsersContainer from './components/users/UsersContainer'
+import { UsersPage } from './components/users/UsersContainer'
 import HeaderContainer from './components/header/HeaderContainer'
-import Login from './components/login/Login'
+import {LoginPage} from './components/login/Login'
 import { connect } from 'react-redux'
 import { initializeApp } from './redux/appReducer'
 import { compose } from 'redux'
@@ -48,9 +48,9 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
               <Route path='/dialogs/*' element={<DialogsContainer />} />
               <Route path='/news' element={<News />} />
               <Route path='/music' element={<Music />} />
-              <Route path='/users' element={<UsersContainer pageTitle={"Samurai"}/>}/>
+              <Route path='/users' element={<UsersPage pageTitle={"Samurai"}/>}/>
               <Route path='/settings' element={<Settings />} />
-              <Route path='/login' element={<Login />} />
+              <Route path='/login' element={<LoginPage />} />
               <Route path='*' element={<div>404 NOT FOUND</div>} />
             </Routes>
           </div>

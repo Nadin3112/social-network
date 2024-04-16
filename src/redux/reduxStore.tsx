@@ -1,10 +1,10 @@
-import { compose, applyMiddleware, combineReducers, legacy_createStore as createStore, Action} from "redux";
+import { compose, applyMiddleware, combineReducers, legacy_createStore as createStore, Action, AnyAction} from "redux";
 import dialogsReducer from "./dialogsReducer";
 import profileReducer from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
-import {thunk, ThunkAction} from "redux-thunk";
+import {thunk, ThunkAction, ThunkDispatch} from "redux-thunk";
 import appReducer from "./appReducer";
 
 const thunkMiddleware = thunk
@@ -25,6 +25,7 @@ export type InferActionsTypes<T> = T extends {[key: string]: (...args: any[]) =>
 
 export  type BaseThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, AppStateType, unknown, A>
 
+export type AppDispatch = ThunkDispatch<AppStateType, unknown, AnyAction>
 
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
