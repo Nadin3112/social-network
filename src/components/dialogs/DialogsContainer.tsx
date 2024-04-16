@@ -13,7 +13,7 @@ const mapStateToProps = (state: AppStateType) => {
 }
 
 const DialogsContainer = compose<React.ComponentType>(
-    connect(mapStateToProps, {...actions}),
+    connect(mapStateToProps, {sendMessage: actions.sendMessageActionCreator}),
     withAuthNavigate)(Dialogs)
 
     export default DialogsContainer
