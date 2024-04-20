@@ -3,10 +3,10 @@ import S from './Login.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/authReducer';
 import { Navigate } from 'react-router-dom';
-import { Formik, Form, Field, FormikHelpers } from 'formik';
+import { Formik, FormikHelpers, Form, Field } from 'formik';
 import { validationSchema } from '../../utils/validators/validators';
 import { AppDispatch, AppStateType } from '../../redux/reduxStore';
-
+import { Button, Input, Checkbox } from 'antd';
 interface MyFormValues {
     email: string
     password: string
@@ -39,21 +39,18 @@ export const LoginPage:React.FC = (props) => {
                 onSubmit={onSubmit}>
                 {({ errors, touched, status }) => (
                     <Form className={S.formLogin}>
-                        <div className={S.formSummaryError}>
-                            {status}
-                        </div>
-                        <Field type="email" name="email" />
-                        {errors.email && touched.email ? (<div className={S.formSummaryError}>{errors.email}</div>) : null}
-                        <Field type="password" name="password" />
-                        {errors.password && touched.password ? (<div className={S.formSummaryError}>{errors.password}</div>) : null}
-                        <label>
-                            <Field type="checkbox" name="checked" value="rememberMe" />
-                            remember Me
-                        </label>
-                        {captchaUrl && <img src={captchaUrl} alt={'captcha'} />}
-                        {captchaUrl && <Field name={'captcha'} />}
-                        <button type="submit" >Submit</button>
-                    </Form>
+                    <div className={S.formSummaryError}>
+                        {status}
+                    </div>
+                    <Input type="email" name="email" />
+                    {errors.email && touched.email ? (<div className={S.formSummaryError}>{errors.email}</div>) : null}
+                    <Input type="password" name="password" />
+                    {errors.password && touched.password ? (<div className={S.formSummaryError}>{errors.password}</div>) : null}
+                    <Checkbox>Remember me</Checkbox>
+                    {captchaUrl && <img src={captchaUrl} alt={'captcha'} />}
+                    {captchaUrl && <Field name={'captcha'} />}
+                    <Button type="primary" htmlType="submit" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Submit</Button>
+                </Form>
                 )}
             </Formik>
         </div>
