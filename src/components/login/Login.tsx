@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom';
 import { Formik, FormikHelpers, Form, Field } from 'formik';
 import { validationSchema } from '../../utils/validators/validators';
 import { AppDispatch, AppStateType } from '../../redux/reduxStore';
-import { Button, Input, Checkbox } from 'antd';
+import { Button, Checkbox } from 'antd';
 interface MyFormValues {
     email: string
     password: string
@@ -42,9 +42,9 @@ export const LoginPage:React.FC = (props) => {
                     <div className={S.formSummaryError}>
                         {status}
                     </div>
-                    <Input type="email" name="email" />
+                    <Field type="email" name="email" />
                     {errors.email && touched.email ? (<div className={S.formSummaryError}>{errors.email}</div>) : null}
-                    <Input type="password" name="password" />
+                    <Field type="password" name="password" />
                     {errors.password && touched.password ? (<div className={S.formSummaryError}>{errors.password}</div>) : null}
                     <Checkbox>Remember me</Checkbox>
                     {captchaUrl && <img src={captchaUrl} alt={'captcha'} />}

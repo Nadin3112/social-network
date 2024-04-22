@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react'
 import './App.css'
-
 import News from './components/news/News'
 import Music from './components/music/Music'
 import Settings from './components/settings/Settings'
@@ -21,6 +20,7 @@ const { Content, Footer, Sider } = Layout;
 
 const ProfileContainer = React.lazy(() => import('./components/profile/ProfileContainer'))
 const DialogsContainer = React.lazy(() => import('./components/dialogs/DialogsContainer'))
+const ChatPage = React.lazy(() => import('./pages/chatPage/ChatPage'))
 
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type DispatchPropsType = {
@@ -52,6 +52,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
                 <Menu.Item><Link to="/profile">Profile</Link></Menu.Item>
                 <Menu.Item><Link to="/dialogs">Messages</Link></Menu.Item>
                 <Menu.Item><Link to="/developers">Developers</Link></Menu.Item>
+                <Menu.Item><Link to="/chat">Chat</Link></Menu.Item>
                 <Menu.Item><Link to="/news">News</Link></Menu.Item>
                 <Menu.Item><Link to="/music">Music</Link></Menu.Item>
                 <Menu.Item><Link to="/settings">Settings</Link></Menu.Item>
@@ -71,6 +72,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
                     <Route path='/developers' element={<UsersPage pageTitle={"Developers"} />} />
                     <Route path='/settings' element={<Settings />} />
                     <Route path='/login' element={<LoginPage />} />
+                    <Route path='/chat' element={<ChatPage/>}/>
                     <Route path='*' element={<div>404 NOT FOUND</div>} />
                   </Routes>
                 </div>
